@@ -6,6 +6,7 @@
 void baseControl();
 void baseStopControl();
 void intakerControl();
+void motorControl();
 
 // main function
 void userControl();

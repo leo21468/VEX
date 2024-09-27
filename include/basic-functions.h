@@ -6,6 +6,7 @@ void delay(int msec);
 // Basic movement
 void moveIntaker(double percent);
 void moveIntakerWithRPM(double RPM);
+void moveMotor(double percent);
 
 // IMU functions
 void IMUInit(int stable_check_time = 2000, double error_tol = 0.2);

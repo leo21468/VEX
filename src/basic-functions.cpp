@@ -16,6 +16,8 @@ void moveIntaker(double percent) { motor_intaker.spin(directionType::fwd, 127 * 
 
 void moveIntakerWithRPM(double RPM) { motor_intaker.spin(directionType::fwd, RPM, velocityUnits::rpm); }
 
+void moveMotor(double percent) { motor_extra.spin(directionType::fwd, 127 * percent, voltageUnits::mV); }
+
 void IMUInit(int stable_checking_time, double error_tol) {
     Controller.Screen.print("IMU Calibrating...");
     bool is_stable = false;

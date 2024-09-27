@@ -53,6 +53,19 @@ void PID::update(double input) {
     error_curt = target - input;  // calculate current error
     //TODO: calculate the contribution of P, I, D with kp, ki, kd
 
+    P = kp * error_curt;// 比例
+    if (P < I_range) { //maybe according to PID.h, I'm not quite sure
+        error_int = error_int + error_curt * jump_time / 1000; // calculate the sum of error
+    }
+    I = ki * error_int;// 积分
+    if (abs(I) > I_max) {
+        I = sign(I) * I_max;// to limit I in the range
+    }
+    D = kd * (error_curt - error_prev);// 微分
+    if (abs(D) > D_tol) {
+        D = sign(D) * D_tol;// to limit D in the range
+    }
+    error_prev = error_curt; // cover the previous error with the current to use for next
     
     if (abs(error_curt) <= error_tol) {  // Exit when staying in tolerated region and
                                         // maintaining a low enough speed
@@ -68,7 +81,19 @@ void PosPID::update(Point input) {
     error_curt = err.mod();  // calculate current error
     //TODO: calculate the contribution of P, I, D with kp, ki, kd
 
-    
+    P = kp * error_curt;// 比例
+    if (P < I_range) { //maybe according to PID.h, I'm not quite sure
+        error_int = error_int + error_curt * jump_time / 1000; // calculate the sum of error
+    }
+    I = ki * error_int;// 积分
+    if (abs(I) > I_max) {
+        I = sign(I) * I_max;// to limit I in the range
+    }
+    D = kd * (error_curt - error_prev);// 微分
+    if (abs(D) > D_tol) {
+        D = sign(D) * D_tol;// to limit D in the range
+    }
+    error_prev = error_curt; // cover the previous error with the current to use for next
     if (abs(error_curt) <= error_tol) {  // Exit when staying in tolerated region and
                                         // maintaining a low enough speed
         arrived = true;
@@ -80,7 +105,20 @@ void DirPID::update(double input) {
     error_curt = degNormalize(target - input);  // calculate current error
     //TODO: calculate the contribution of P, I, D with kp, ki, kd
 
-    
+    P = kp * error_curt;// 比例
+    if (P < I_range) { //maybe according to PID.h, I'm not quite sure
+        error_int = error_int + error_curt * jump_time / 1000; // calculate the sum of error
+    }
+    I = ki * error_int;// 积分
+    if (abs(I) > I_max) {
+        I = sign(I) * I_max;// to limit I in the range
+    }
+    D = kd * (error_curt - error_prev);// 微分
+    if (abs(D) > D_tol) {
+        D = sign(D) * D_tol;// to limit D in the range
+    }
+    error_prev = error_curt; // cover the previous error with the current to use for next
+
     if (abs(error_curt) <= error_tol) {  // Exit when staying in tolerated region and
                                         // maintaining a low enough speed
         arrived = true;

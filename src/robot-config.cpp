@@ -22,6 +22,9 @@ motor motor_base_r4 = motor(PORT20, ratio6_1, true);  //-
 // IntakerMotor
 motor motor_intaker = motor(PORT19, ratio6_1, false); //+
 
+// NewMotor
+motor motor_extra = motor(PORT21, ratio6_1, true); //-
+
 // AS5600
 analog_in AS5600_L = analog_in(Brain.ThreeWirePort.A);
 analog_in AS5600_R = analog_in(Brain.ThreeWirePort.H);

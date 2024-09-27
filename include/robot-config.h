@@ -28,6 +28,8 @@ extern inertial Inertial;
 // 定义左右编码器对象
 extern analog_in AS5600_L;
 extern analog_in AS5600_R;
+// 定义新电机对象
+extern motor motor_extra;
 
 // 气缸控制
 // extern digital_out name;

@@ -60,6 +60,19 @@ void intakerControl() {
     }
 }
 
+// 新电机控制函数
+void motorControl() {
+    if(press_A) {
+        press_A = false;
+        moveMotor(100);
+    } else if(press_B) {
+        press_B = false;
+        moveMotor(-100);
+    } else {
+        moveMotor(0);
+    }
+}
+
 void userControl() {
     modeDisplay('U');
     vex::thread *T = nullptr;
@@ -89,6 +102,9 @@ void userControl() {
 
             // 其余组件控制
             intakerControl();
+
+            // 新电机控制
+            motorControl();
         }
 
         this_thread::sleep_for(kRefreshTime);
